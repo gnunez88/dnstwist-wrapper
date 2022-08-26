@@ -1,0 +1,10 @@
+# Ignore backup files
+**.old
+**.bak
+**.swp
+**~
+
+# Ignore results, test and venv folders
+results/
+test/
+venv/
