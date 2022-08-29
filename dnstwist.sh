@@ -4,7 +4,7 @@ TARGET="${1:?Target domain missing}"
 DNSTWIST_FOLDER="$(pwd)/dnstwist"
 DNSTWIST_URL="https://github.com/elceef/dnstwist"
 DNSTWIST="${DNSTWIST_FOLDER}/dnstwist.py"
-RESULTS_FOLDER="$(pwd)/results"
+RESULTS_FOLDER="$(pwd)/results/$(date +'%Y-%m-%d')"
 
 function suggest_installation () {
     TOOL="${1}"
@@ -57,5 +57,5 @@ fi
 # Run the application
 if [ "${CONTINUE}" = "yes" ]; then
     python3 "${DNSTWIST}" -wbsram ${TARGET} --tld tld.txt \
-        -f json -o "${RESULTS_FOLDER}"/$(date +"%Y%m%d_%H%M%S")_${TARGET}.json
+        -f json -o "${RESULTS_FOLDER}"/${TARGET}_$(date +"%H%M%S").json
 fi
