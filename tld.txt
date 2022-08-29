@@ -1,0 +1,9 @@
+com
+net
+org
+edu
+data
+dev
+eu
+it
+biz

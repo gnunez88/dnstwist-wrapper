@@ -10,8 +10,7 @@ function usage () {
 function parse_file () {
     JSON_FILE="${1}"
     ARG=${2}
-    python3 parse-info.py "${JSON_FILE}" ${ARG} | column -t
-    #python3 parse-info.py "${ARGS}" | column -t
+    python3 parse-info.py "${JSON_FILE}" ${ARG} | column -t | tr '$' ' '
 }
 
 function parse_everything () {

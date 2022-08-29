@@ -26,7 +26,7 @@ function install_requirements () {
 # if not, check if virtualenv is installed
 # if so, check if the current directory is writable
 # then create a virtual environment in venv
-if [ -d venv -a -x venv -a -r venv ]; then
+if [ -d venv ]; then
     source venv/bin/activate
     CONTINUE="yes"
 elif ! command -v virtualenv >/dev/null 2>&1; then
@@ -56,6 +56,6 @@ fi
 
 # Run the application
 if [ "${CONTINUE}" = "yes" ]; then
-    python3 "${DNSTWIST}" -wbsram ${TARGET} \
+    python3 "${DNSTWIST}" -wbsram ${TARGET} --tld tld.txt \
         -f json -o "${RESULTS_FOLDER}"/$(date +"%Y%m%d_%H%M%S")_${TARGET}.json
 fi

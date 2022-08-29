@@ -40,7 +40,7 @@ def main(args):
     for entry in contents:
         register  = f"{entry['domain']}"
         register += f" {entry['fuzzer']}"
-        register += f" {entry['banner_http'] if 'banner_http' in entry else '-'}"
+        register += f" {entry['banner_http'].replace(' ','$') if 'banner_http' in entry else '-'}"
         register += f" {','.join(entry['dns_a']) if 'dns_a' in entry else '-'}"
         register += f" {','.join(entry['dns_aaaa']) if len('dns_aaaa') in entry else '-'}" if args.all else ""
         register += f" {entry['dns_mx'] if len('dns_mx') in entry else '-'}" if args.all else ""
