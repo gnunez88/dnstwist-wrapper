@@ -1,6 +1,6 @@
 # DNSTwist Wrapper
 
-A [`dnswrapper`](https://github.com/elceef/dnstwist) to automate some tasks.
+A [`dnstwist`](https://github.com/elceef/dnstwist) wrapper to automate some tasks.
 
 ## Why?
 
@@ -36,6 +36,32 @@ Parse DNSTwist JSON results:
 **Note 1**: We can specify a single file: `./parse-info.sh <json-file>`
 **Note 2**: We can specify a folder, every JSON file within it will be parsed: `./parse-info.sh <dir>`
 
+## Workflow
+
+Since I use it often, but not that often, I keep forgetting the worflow of commands I like.
+So I am writing this down here:
+
+1. Leveraging `dnstwist` for the target domain:
+```bash
+./dnstwist.sh <domain>
+```
+
+2. Show a table with the results:
+```bash
+./parse-info.sh results/<date>/<domain>_<time>.json
+```
+
+3. Create a list with the domains found:
+```bash
+./parse-info.py -d results/<date>/<domain>_<time>.json > results/<date>/<domain>_<time>.txt
+```
+
+4. Capture the webpage screenshots:
+```bash
+./scrot/scrot.py results/<date>/<domain>_<time>.txt -v
+```
+**Note**: JavaScript-based webpages will not show their content.
+
 
 ## Dependencies
 
@@ -47,8 +73,9 @@ Since there are `bash` scripts, there is the need of using some tools, namely
 - `jq` (`sudo apt install -y jq`)
 - `virtualenv` (`sudo apt install -y python3-virtualenv`)
 - `dnstwist.py` (clone this repo with the `--recurse-submodules` flag)
+- `wkhtmltoimage` (`sudo apt install -y wkhtmltopdf`)
 
 ## TODO
 
-- [x] Include an option to show more fields
-- [ ] Parse better when there are Banners with blank spaces (because of `column`)
+- [ ] Remake the scripts to be only in Python (only scripts, no the utilities it leverages)
+- [ ] Remake the wrapper to use only Python, so it can be cross-platform.

@@ -1,8 +1,9 @@
-# Ignore backup files
+# Ignore backup and log files
 **.old
 **.bak
 **.swp
 **~
+**.log
 
 # Ignore results, test and venv folders
 results/
